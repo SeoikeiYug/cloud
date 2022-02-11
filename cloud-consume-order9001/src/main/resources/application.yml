@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: cloud-consume-order9001
+    name: cloud-consume-order
 
 eureka:
   client:
