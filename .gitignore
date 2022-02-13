@@ -1,5 +1,10 @@
 # Project exclude paths
-*/target/
+/cloud-api-commons/target/
+/cloud-consume-order9001/target/
+/cloud-eureka-server7001/target/
+/cloud-eureka-server7002/target/
+/cloud-provider-payment8001/target/
+/cloud-provider-payment8002/target/
 
 *.iml
 .idea
