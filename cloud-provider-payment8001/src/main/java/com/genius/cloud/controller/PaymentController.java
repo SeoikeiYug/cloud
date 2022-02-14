@@ -6,7 +6,11 @@ import com.genius.cloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -17,6 +21,9 @@ public class PaymentController {
 
     @Autowired
     private PaymentService paymentService;
+
+    @Autowired
+    private DiscoveryClient discoveryClient;
 
     @PostMapping(value = "/payment/create")
     public CommonResult<Integer> create(@RequestBody Payment payment) {
@@ -39,6 +46,22 @@ public class PaymentController {
         } else {
             return new CommonResult<>(444, "没有对应记录, 查询ID: " + id, null);
         }
+    }
+
+    @GetMapping("/payment/discovery")
+    public List<ServiceInstance> discovery() {
+        // 获取eureka中注册的服务有哪些，相当于获取eureka上的服务的key
+        List<String> services = discoveryClient.getServices();
+        for (String service : services) {
+            log.info("已注册服务: " + service);
+        }
+
+        // 通过eureka中注册的服务名称，获取所有的服务实例的信息
+        List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PROVIDER-PAYMENT");
+        for (ServiceInstance instance : instances) {
+            log.info(instance.getServiceId() + "\t" + instance.getHost() + "\t" + instance.getPort() + "\t" + instance.getUri());
+        }
+        return instances;
     }
 
 }
