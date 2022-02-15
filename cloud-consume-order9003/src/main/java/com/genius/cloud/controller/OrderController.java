@@ -2,8 +2,6 @@ package com.genius.cloud.controller;
 
 import com.genius.cloud.service.PaymentFeignService;
 import com.netflix.hystrix.contrib.javanica.annotation.DefaultProperties;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +27,7 @@ public class OrderController {
     //         @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1500")
     // })
     // 全局fallback方法
-    @HystrixCommand
+    // @HystrixCommand
     public String feignTimeout(@PathVariable("id") Integer id) {
         return paymentFeignService.paymentInfoTimeOut(id);
     }
