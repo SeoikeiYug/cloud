@@ -26,7 +26,7 @@ public class PaymentService {
 
     // 用来善后的方法
     public String paymentInfoTimeOutHandler(Integer id) {
-        return "线程池:  " + Thread.currentThread().getName() + "  9003系统繁忙或者运行报错，请稍后再试,id:  " + id + "\t" + "o(╥﹏╥)o";
+        return "线程池:  " + Thread.currentThread().getName() + "  8003系统繁忙或者运行报错，请稍后再试,id:  " + id + "\t" + "o(╥﹏╥)o";
     }
 
 }
