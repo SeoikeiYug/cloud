@@ -1,5 +1,6 @@
 # Project exclude paths
 /cloud-api-commons/target/
+/cloud-config-server3344/target/
 /cloud-consume-order9001/target/
 /cloud-consume-order9002/target/
 /cloud-consume-order9003/target/
